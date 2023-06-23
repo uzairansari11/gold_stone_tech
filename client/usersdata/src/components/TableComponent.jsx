@@ -20,25 +20,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-
-const data = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    status: "Active",
-    gender: "Male",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    status: "Inactive",
-    gender: "Female",
-  },
-];
-
-const TableComponent = () => {
+import axios from "axios";
+const TableComponent = ({ data, handleUpdateUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
 
@@ -53,7 +36,11 @@ const TableComponent = () => {
   };
 
   const handleUpdate = () => {
-    // Handle update logic here
+    handleUpdateUser(selectedData._id, selectedData);
+    axios.patch(
+      `http://localhost:8080/update/users/${selectedData._id}`,
+      selectedData
+    );
     console.log("Updating data:", selectedData);
     closeModal();
   };
@@ -72,7 +59,7 @@ const TableComponent = () => {
         </Thead>
         <Tbody>
           {data.map((item) => (
-            <Tr key={item.id}>
+            <Tr key={item._id}>
               <Td>{item.name}</Td>
               <Td>{item.email}</Td>
               <Td>{item.status}</Td>
