@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 import TableComponent from "./components/TableComponent";
 import DownloadButton from "./components/DownloadButton";
-
+import { Heading, Box } from '@chakra-ui/react'
 function App() {
   const [users, setUsers] = useState([]);
   const getUsersFromAPI = async () => {
@@ -26,7 +26,17 @@ function App() {
 
   return (
     <div className="App">
-      <TableComponent data={users} handleUpdateUser={handleUpdateUser} />
+      <Heading position={'fixed'} heigth={'50px'}
+        top={0}
+        left={0}
+        width={'100%'}
+        bg={'white'}
+        py={4}
+        zIndex={40}
+      >User Management System</Heading>
+      <Box mt={'70px'}>
+        <TableComponent data={users} handleUpdateUser={handleUpdateUser} />
+      </Box>
       <DownloadButton />
     </div>
   );
