@@ -12,9 +12,15 @@ const UserSchema = mongoose.Schema(
         },
         gender: {
             type: String,
+            emun: {
+                values: ['male', 'female']
+            }
         },
         status: {
             type: String,
+            enmu: {
+                values: ["active", "inactive"]
+            },
         },
     },
     {
@@ -23,4 +29,4 @@ const UserSchema = mongoose.Schema(
 );
 
 const UserModel = mongoose.model("User", UserSchema);
-module.exports = {UserModel};
+module.exports = { UserModel };

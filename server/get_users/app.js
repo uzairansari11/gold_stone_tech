@@ -1,12 +1,22 @@
-const express = require("express")
+const express = require("express");
+const { connection } = require("./config/db");
+require('dotenv').config();
+const cors = require('cors');
+const { userRouter } = require('./controller/use_controller');
 
-const PORT = 3000
-const app = express()
 
-app.get("/users", (req, res) => {
-    res.send('Meesage from user service')
-})
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT,() => {
-    console.log("User service")
-})
+app.use("/get", userRouter);
+
+app.listen(3001, async () => {
+    try {
+        await connection();
+        console.log("Connected to the database");
+    } catch (error) {
+        console.log("Error connecting to the database:", error);
+    }
+    console.log("User service");
+});
