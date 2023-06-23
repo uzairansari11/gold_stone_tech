@@ -6,7 +6,9 @@ const app = express();
 const routes = {
     "/get": "http://localhost:3001",
     "/update": "http://localhost:3002",
+    "/add": "http://localhost:3005",
     "/csv": "http://localhost:3003",
+
 };
 
 for (let route in routes) {

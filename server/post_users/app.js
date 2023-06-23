@@ -10,14 +10,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/update", userRouter);
+app.use("/add", userRouter);
 
-app.listen(3002, async () => {
+app.listen(3005, async () => {
     try {
         await connection();
         console.log("Connected to the database");
     } catch (error) {
         console.log("Error connecting to the database:", error);
     }
-    console.log("User service 3002");
+    console.log("User service 3005");
 });

@@ -18,5 +18,5 @@ app.listen(3001, async () => {
     } catch (error) {
         console.log("Error connecting to the database:", error);
     }
-    console.log("User service");
+    console.log("User service 3001");
 });
